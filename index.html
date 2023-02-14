@@ -33,7 +33,7 @@
           <div class="col">
             <a
               class="btn btn-info btn-lg"
-              href="#"
+              href="#thingsToDo"
               role="button"
               id="bored-button"
               >Things to do</a
@@ -61,9 +61,9 @@
       </div>
     </div>
 
-    <div class="card mb-3 customCard">
+    <div class="card mb-3 customCard" id="thingsToDo">
       <div class="row no-gutters">
-        <div class="col-md-4 d-flex justify-content-center">
+        <div class="col-md-3 d-flex justify-content-center">
           <div class="dropdown centered customDropDown flex-column">
             <h5>Select activity type</h5>
             <button
@@ -89,22 +89,70 @@
             </div>
           </div>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-7">
           <div class="card-body">
             <p class="card-title">You could...</p>
-            <h5 class="card-text" id="activity">
-              
-            </h5>
+            <h5 class="card-text" id="activity"></h5>
             <p class="card-text customCardText">
-              <small class="text-muted " id="saveActivityButton"></small>
+              <small class="text-muted" id="saveActivityButton"></small>
             </p>
+          </div>
+        </div>
+
+        <div class="col-md-2 customDropDown customButton">
+          <!-- Button trigger modal -->
+          <button
+            type="button"
+            class="btn btn-info"
+            data-toggle="modal"
+            data-target="#exampleModal"
+            id="seeFavouritesButton"
+          >
+            See favourites
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Favourite Acitivity Modal -->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+              Favourite Activites
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" id="activityTableArea"></div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-info">Save changes</button>
           </div>
         </div>
       </div>
     </div>
 
     <!-- Javascript -->
-    <script src="./assets/scripts.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
       integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
@@ -115,5 +163,6 @@
       integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
       crossorigin="anonymous"
     ></script>
+    <script src="./assets/scripts.js"></script>
   </body>
 </html>

@@ -31,33 +31,78 @@ for (let i = 0; i < dropdownButtons.length; i++) {
 async function getActivity(activity) {
   let queryURl;
   if (activity == "any") {
-    console.log("any");
     queryURl = "http://www.boredapi.com/api/activity/";
   } else {
-    console.log("else loop");
     queryURl = `http://www.boredapi.com/api/activity?type=${activity}`;
   }
   let response = await fetch(queryURl);
   currentActivity = await response.json();
-  console.log(currentActivity);
   $("#activity").text(currentActivity.activity);
   $("#saveActivityButton").html(
     `<button type="button" class="btn btn-info customButton">Save to favourites</button>`
   );
 }
 
-$("#saveActivityButton").on("click", function(){
-  let savedActivites
-  try{
-  savedActivites  = JSON.parse(localStorage.getItem("favouriteActivites"))
+$("#saveActivityButton").on("click", function () {
+  let savedActivites = JSON.parse(localStorage.getItem("favouriteActivites"));
+  if (!savedActivites) {
+    let toSaveActivites = [];
+    toSaveActivites.push(currentActivity);
+    localStorage.setItem("favouriteActivites", JSON.stringify(toSaveActivites));
   }
-  catch{}
-  savedActivites.push(currentActivity)
-  localStorage.setItem("favouriteActivites", savedActivites)
-})
+  // Checks if the previous value is the same as the current one, to stop double saving by double clicking by accident.
+  else if (
+    currentActivity.key != savedActivites[savedActivites.length - 1].key
+  ) {
+    savedActivites.push(currentActivity);
+    localStorage.setItem("favouriteActivites", JSON.stringify(savedActivites));
+  }
 
-// dropdownButtons.forEach((element) => {
-//   element.addEventListener("click", function () {
-//     console.log(this);
-//   });
-// });
+  //   try {
+  //     let savedActivites = JSON.parse(localStorage.getItem("favouriteActivites"));
+  //     toSaveActivites.push(savedActivites);
+  //     toSaveActivites.push(currentActivity);
+  //     localStorage.setItem("favouriteActivites", JSON.stringify(toSaveActivites));
+  //   } catch (error) {
+  //     toSaveActivites = currentActivity;
+  //     localStorage.setItem("favouriteActivites", JSON.stringify(toSaveActivites));
+  //   }
+  console.log(savedActivites);
+});
+
+//Populate favourites table when the button is pressed to bring up the modal.
+$("#seeFavouritesButton").on("click", function () {
+  let tableArea = $("#activityTableArea");
+  tableArea.html("");
+  let table = $("<table></table>");
+  table.addClass("table table-bordered table-hover ");
+  table.html( `<thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Activity</th>
+    <th scope="col">Activitiy Type</th>
+    <th scope="col">Completed?</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <th scope="row">1</th>
+    <td>Mark</td>
+    <td>Otto</td>
+    <td>@mdo</td>
+  </tr>
+  <tr>
+    <th scope="row">2</th>
+    <td>Jacob</td>
+    <td>Thornton</td>
+    <td>@fat</td>
+  </tr>
+  <tr>
+    <th scope="row">3</th>
+    <td colspan="2">Larry the Bird</td>
+    <td>@twitter</td>
+  </tr>
+</tbody>`);
+  console.log(table);
+  tableArea.append(table);
+});
