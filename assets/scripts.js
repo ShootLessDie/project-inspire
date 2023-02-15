@@ -172,7 +172,7 @@ $("#saveFactButton").on("click", function () {
   }
   // Checks if the previous value is the same as the current one, to stop double saving by double clicking by accident.
   else if (
-    savedFacts.id != savedFacts[savedFacts.length - 1].id
+    currentFact.id != savedFacts[savedFacts.length - 1].id
   ) {
     savedFacts.push(currentFact);
     localStorage.setItem("favouriteFacts", JSON.stringify(savedFacts));
@@ -180,10 +180,20 @@ $("#saveFactButton").on("click", function () {
   savedFacts = JSON.parse(localStorage.getItem("favouriteFacts"));
 });
 
+$("#seeFavouriteFactsButton").on("click", function(){
+    console.log("see favourites")
+})
+
+$("#clearFavouriteFactsButton").on("click", function(){
+    console.log("clear favourites")
+    // FINISH
+})
+
 async function printChuckFact() {
   await getChuckFact();
   const factArea = $("#chuckFactArea");
   factArea.text(currentFact.value);
+  $("#saveFactButton").empty()
   $("<button></button>")
     .attr("type", "button")
     .attr("class", "btn btn-danger customButton")
