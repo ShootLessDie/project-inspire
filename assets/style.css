@@ -38,3 +38,8 @@
 .customh5{
   font-size: 1.35rem;
 }
+
+.dogImages{
+  object-fit: contain;
+  height: 300px;
+}
