@@ -1,20 +1,3 @@
-//Chuck norris background change effect, not necessary
-
-// document
-//   .getElementById("chuck-button")
-//   .addEventListener("mouseover", function () {
-//     $(".jumbotron").css(
-//       "background-image",
-//       "url(https://images.saymedia-content.com/.image/t_share/MTkwNzEyNjU2MjE3MzE5MzUw/5-awesome-chuck-norris-movies.jpg)"
-//     );
-//   });
-
-// document
-//   .getElementById("chuck-button")
-//   .addEventListener("mouseleave", function () {
-//     $(".jumbotron").css("background-image", "");
-//   });
-
 let dropdownButtons = document.getElementsByClassName("dropdown-item");
 let currentActivity;
 let currentFact;
@@ -23,8 +6,8 @@ let savedFacts = JSON.parse(localStorage.getItem("favouriteFacts"));
 let currentDogResponse;
 let isGettingDoggyPics = false
 
-for (let i = 0; i < dropdownButtons.length; i++) {
-  dropdownButtons[i].addEventListener("click", function () {
+for (const element of dropdownButtons) {
+  element.addEventListener("click", function () {
     let selectedActivity = this.innerText;
 
     document.getElementById("drowdownMainText").innerText = selectedActivity;
@@ -74,12 +57,12 @@ $("#seeFavouritesButton").on("click", function () {
 });
 
 function seeFavouriteActivites() {
+  let tableArea = $("#activityTableArea")
   if (!savedActivites) {
-    tableArea = $("#activityTableArea")
+    tableArea
       .html("")
       .text("You have no activites saved.");
   } else {
-    let tableArea = $("#activityTableArea");
     tableArea.html("");
     let table = $("<table></table>");
     table.addClass("table table-bordered table-hover ");
@@ -95,18 +78,18 @@ function seeFavouriteActivites() {
       .appendTo(table);
     let tableBody = $("<tbody></tbody>").appendTo(table);
 
-    for (let i = 0; i < savedActivites.length; i++) {
+    for (const element of savedActivites) {
       let tableRow = $("<tr></tr>").appendTo(tableBody);
-      let activity = $("<td></td>")
-        .text(savedActivites[i].activity)
+      $("<td></td>")
+        .text(element.activity)
         .appendTo(tableRow);
-      let type = $("<td></td>")
-        .text(savedActivites[i].type)
+      $("<td></td>")
+        .text(element.type)
         .addClass("activityType")
         .appendTo(tableRow);
       let completed = $("<td></td>")
         .html(
-          `<button type="button" class="btn btn-outline-danger removeButton" id = "${savedActivites[i].key}">Remove</button>
+          `<button type="button" class="btn btn-outline-danger removeButton" id = "${element.key}">Remove</button>
         `
         )
         .appendTo(tableRow);
@@ -176,7 +159,7 @@ function deleteFavouriteActivity() {
     )
     .appendTo(parent);
   confirmButton.on("click", function () {
-    index = savedActivites.findIndex((x) => x.key == itemID);
+    let index = savedActivites.findIndex((x) => x.key == itemID);
     savedActivites.splice(index, 1);
     localStorage.setItem("favouriteActivites", JSON.stringify(savedActivites));
     seeFavouriteActivites();
@@ -213,12 +196,13 @@ $("#clearFavouriteFactsButton").on("click", function () {
 });
 
 function seeFavouriteFacts() {
+  let tableArea = $("#factsTableArea")
   if (!savedFacts) {
-    tableArea = $("#factsTableArea")
+    tableArea
       .html("")
       .text("You have no activites saved.");
   } else {
-    let tableArea = $("#factsTableArea");
+  
     tableArea.html("");
     let table = $("<table></table>");
     table.addClass("table table-bordered table-hover ");
@@ -233,14 +217,14 @@ function seeFavouriteFacts() {
       .appendTo(table);
     let tableBody = $("<tbody></tbody>").appendTo(table);
 
-    for (let i = 0; i < savedFacts.length; i++) {
+    for (const element of savedFacts) {
       let tableRow = $("<tr></tr>").appendTo(tableBody);
-      let activity = $("<td></td>")
-        .text(savedFacts[i].value)
+      $("<td></td>")
+        .text(element.value)
         .appendTo(tableRow);
       let completed = $("<td></td>")
         .html(
-          `<button type="button" class="btn btn-outline-danger removeFactButton" id = "${savedFacts[i].id}">Remove</button>
+          `<button type="button" class="btn btn-outline-danger removeFactButton" id = "${element.id}">Remove</button>
         `
         )
         .appendTo(tableRow);
@@ -262,7 +246,7 @@ function deleteFavouriteFact() {
     )
     .appendTo(parent);
   confirmButton.on("click", function () {
-    index = savedFacts.findIndex((x) => x.id == itemID);
+    let index = savedFacts.findIndex((x) => x.id == itemID);
     console.log(index);
     savedFacts.splice(index, 1);
     localStorage.setItem("favouriteFacts", JSON.stringify(savedFacts));
