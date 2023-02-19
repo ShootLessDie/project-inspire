@@ -49,16 +49,16 @@
 }
 
 h3 {
-  color: #eeeeee;
+  color: #01f0fd;
   font:  bold 2rem Segoe UI, Serif;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+  text-shadow: 0 0px 10px rgba(255, 255, 255, 0.4);
 }
 
 h1 {
-  color: #ffffff;
+  color: #01f0fd;
   font:  bold 2rem Segoe UI, Serif;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
-  font-weight: 400;
+  text-shadow: 0 0px 10px rgba(255, 255, 255, 0.4);
+  font-weight: 500 !important;
 }
 .lead {
   font-size: 1.4rem;
@@ -72,4 +72,13 @@ p{
 body{
   background-color: #23232e;
   color: #eeeeee;
+}
+
+.modal-content{
+  background-color: #2c2c3e !important;
+  color: white !important;
+}
+
+th, td{
+  color: white;
 }
