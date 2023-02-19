@@ -13,7 +13,7 @@
     <link rel="stylesheet" type="text/css" href="./assets/style.css" />
 
     <title>Project-Inspire</title>
-    <link rel="icon" type="image/x-icon" href="./assets/inspiration.png">
+    <link rel="icon" type="image/x-icon" href="./assets/inspiration.png" />
   </head>
   <body>
     <div class="jumbotron jumbotron-custom bg-light custom-jumbotron">
@@ -100,6 +100,8 @@
             </p>
             <!-- Favourite item added alert -->
             <span id="favActivityConfirmation"></span>
+            <!-- Favourite item error alert -->
+            <span id="favActivityError"></span>
           </div>
         </div>
 
@@ -166,26 +168,31 @@
     <br />
     <br />
     <h3 class="centered" id="chuckNorris">Chuck Norris Facts</h3>
-<div class="card mb-3 customCard">
+    <div class="card mb-3 customCard">
       <div class="row no-gutters">
         <div class="col-md-3 d-flex justify-content-center">
           <div class="dropdown centered customDropDown flex-column">
-          <button
-            type="button"
-            class="btn btn-danger"
-            id="getChuckFactButton"
-          >
-            Another one!
-          </button>
+            <button
+              type="button"
+              class="btn btn-danger"
+              id="getChuckFactButton"
+            >
+              Another one!
+            </button>
           </div>
         </div>
         <div class="col-md-7">
           <div class="card-body">
             <h5 class="card-title">Did you know??!</h5>
-            <div class="card-text customCardText customh5" id="chuckFactArea"></div>
+            <div
+              class="card-text customCardText customh5"
+              id="chuckFactArea"
+            ></div>
             <div id="saveFactButton"></div>
             <!-- Favourite item added alert -->
             <span id="favFactConfirmation"></span>
+            <!-- Favourite item added alert -->
+            <span id="favFactError"></span>
           </div>
         </div>
 
@@ -204,57 +211,57 @@
       </div>
     </div>
 
-     <!-- Favourite Acitivity Modal -->
-     <div
-     class="modal fade"
-     id="chuckModal"
-     tabindex="-1"
-     aria-labelledby="exampleModalLabel"
-     aria-hidden="true"
-   >
-     <div
-       class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable"
-     >
-       <div class="modal-content">
-         <div class="modal-header">
-           <h5 class="modal-title" id="exampleModalLabel">
-             Favourite Chuck Facts
-           </h5>
-           <button
-             type="button"
-             class="close"
-             data-dismiss="modal"
-             aria-label="Close"
-           >
-             <span aria-hidden="true">&times;</span>
-           </button>
-         </div>
-         <div class="modal-body" id="factsTableArea"></div>
-         <div class="modal-footer">
-           <button
-             type="button"
-             class="btn btn-danger"
-             id="clearFavouriteFactsButton"
-           >
-             Clear Favourites
-           </button>
-           <button
-             type="button"
-             class="btn btn-secondary"
-             data-dismiss="modal"
-           >
-             Close
-           </button>
-         </div>
-       </div>
-     </div>
-   </div>
+    <!-- Favourite Acitivity Modal -->
+    <div
+      class="modal fade"
+      id="chuckModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div
+        class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable"
+      >
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+              Favourite Chuck Facts
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" id="factsTableArea"></div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-danger"
+              id="clearFavouriteFactsButton"
+            >
+              Clear Favourites
+            </button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
 
-   <br>
-   <h3 class="centered" id="dogPics">Dog pictures</h3>
-   <br>
-   <div class="container" id="dogPicturesContainer"></div>
-   
+    <br />
+    <h3 class="centered" id="dogPics">Dog pictures</h3>
+    <br />
+    <div class="container" id="dogPicturesContainer"></div>
+
     <!-- Javascript -->
     <script
       src="https://code.jquery.com/jquery-3.6.3.min.js"

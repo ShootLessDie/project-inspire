@@ -42,9 +42,13 @@ $("#saveActivityButton").on("click", function () {
   ) {
     savedActivites.push(currentActivity);
     localStorage.setItem("favouriteActivites", JSON.stringify(savedActivites));
+    addedActivityNotification();
+  }
+  else{
+    addedActivityErrorNotification()
   }
   savedActivites = JSON.parse(localStorage.getItem("favouriteActivites"));
-  addedActivityNotification();
+  
 });
 
 //Populate favourites table when the button is pressed to bring up the modal.
@@ -113,8 +117,29 @@ function addedActivityNotification() {
 
   $("#favActivityConfirmation")
     .html(
-      `<div class="alert alert-success" role="alert">
+      `<br><div class="alert alert-success" role="alert">
   <span class="font-weight-bold">${currentActivity.activity}</span> has been added to your favourites!
+</div>`
+    )
+    .fadeIn(0)
+    .fadeOut(0)
+    .fadeIn();
+}
+
+function addedActivityErrorNotification() {
+  // Removes notification when 3s has passed
+  setTimeout(
+    function () {
+      $("#favActivityError").fadeOut();
+    },
+
+    2000
+  );
+
+  $("#favActivityError")
+    .html(
+      `<br><div class="alert alert-danger" role="alert">
+  Oops! <span class="font-weight-bold">${currentActivity.activity}</span> was added to your favourites just before.
 </div>`
     )
     .fadeIn(0)
@@ -134,7 +159,7 @@ function addedFactNotification() {
 
   $("#favFactConfirmation")
     .html(
-      `<div class="alert alert-success" role="alert">
+      `<br><div class="alert alert-success" role="alert">
   <span class="font-weight-bold">${currentFact.value}</span> has been added to your favourites!
 </div>`
     )
@@ -142,6 +167,29 @@ function addedFactNotification() {
     .fadeOut(0)
     .fadeIn();
 }
+
+function addedFactErrorNotification() {
+  // Removes notification when 3s has passed
+  setTimeout(
+    function () {
+      $("#favFactError").fadeOut();
+    },
+
+    2000
+  );
+
+  $("#favFactError")
+    .html(
+      `<br><div class="alert alert-danger" role="alert">
+  Oops! <span class="font-weight-bold">${currentFact.value}</span> was added to your favourites just before.
+</div>`
+    )
+    .fadeIn(0)
+    .fadeOut(0)
+    .fadeIn();
+}
+
+
 
 $("#clearFavouritesButton").on("click", function () {
   savedActivites = "";
@@ -181,6 +229,9 @@ $("#saveFactButton").on("click", function () {
     savedFacts.push(currentFact);
     localStorage.setItem("favouriteFacts", JSON.stringify(savedFacts));
     addedFactNotification();
+  }
+  else{
+    addedFactErrorNotification()
   }
   savedFacts = JSON.parse(localStorage.getItem("favouriteFacts"));
 });
