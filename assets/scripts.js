@@ -18,9 +18,9 @@ for (const element of dropdownButtons) {
 async function getActivity(activity) {
   let queryURl;
   if (activity == "any") {
-    queryURl = "http://www.boredapi.com/api/activity/";
+    queryURl = "https://www.boredapi.com/api/activity/";
   } else {
-    queryURl = `http://www.boredapi.com/api/activity?type=${activity}`;
+    queryURl = `https://www.boredapi.com/api/activity?type=${activity}`;
   }
   let response = await fetch(queryURl);
   currentActivity = await response.json();
