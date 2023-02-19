@@ -4,7 +4,7 @@ let currentFact;
 let savedActivites = JSON.parse(localStorage.getItem("favouriteActivites"));
 let savedFacts = JSON.parse(localStorage.getItem("favouriteFacts"));
 let currentDogResponse;
-let isGettingDoggyPics = false
+let isGettingDoggyPics = false;
 
 for (const element of dropdownButtons) {
   element.addEventListener("click", function () {
@@ -35,6 +35,7 @@ $("#saveActivityButton").on("click", function () {
     let toSaveActivites = [];
     toSaveActivites.push(currentActivity);
     localStorage.setItem("favouriteActivites", JSON.stringify(toSaveActivites));
+    addedActivityNotification();
   }
   // Checks if the previous value is the same as the current one, to stop double saving by double clicking by accident.
   else if (
@@ -43,12 +44,10 @@ $("#saveActivityButton").on("click", function () {
     savedActivites.push(currentActivity);
     localStorage.setItem("favouriteActivites", JSON.stringify(savedActivites));
     addedActivityNotification();
-  }
-  else{
-    addedActivityErrorNotification()
+  } else {
+    addedActivityErrorNotification();
   }
   savedActivites = JSON.parse(localStorage.getItem("favouriteActivites"));
-  
 });
 
 //Populate favourites table when the button is pressed to bring up the modal.
@@ -61,11 +60,9 @@ $("#seeFavouritesButton").on("click", function () {
 });
 
 function seeFavouriteActivites() {
-  let tableArea = $("#activityTableArea")
+  let tableArea = $("#activityTableArea");
   if (!savedActivites) {
-    tableArea
-      .html("")
-      .text("You have no activites saved.");
+    tableArea.html("").text("You have no activites saved.");
   } else {
     tableArea.html("");
     let table = $("<table></table>");
@@ -84,9 +81,7 @@ function seeFavouriteActivites() {
 
     for (const element of savedActivites) {
       let tableRow = $("<tr></tr>").appendTo(tableBody);
-      $("<td></td>")
-        .text(element.activity)
-        .appendTo(tableRow);
+      $("<td></td>").text(element.activity).appendTo(tableRow);
       $("<td></td>")
         .text(element.type)
         .addClass("activityType")
@@ -189,8 +184,6 @@ function addedFactErrorNotification() {
     .fadeIn();
 }
 
-
-
 $("#clearFavouritesButton").on("click", function () {
   savedActivites = "";
   localStorage.removeItem("favouriteActivites");
@@ -223,15 +216,15 @@ $("#saveFactButton").on("click", function () {
     let toSaveFacts = [];
     toSaveFacts.push(currentFact);
     localStorage.setItem("favouriteFacts", JSON.stringify(toSaveFacts));
+    addedFactNotification();
   }
   // Checks if the previous value is the same as the current one, to stop double saving by double clicking by accident.
   else if (currentFact.id != savedFacts[savedFacts.length - 1].id) {
     savedFacts.push(currentFact);
     localStorage.setItem("favouriteFacts", JSON.stringify(savedFacts));
     addedFactNotification();
-  }
-  else{
-    addedFactErrorNotification()
+  } else {
+    addedFactErrorNotification();
   }
   savedFacts = JSON.parse(localStorage.getItem("favouriteFacts"));
 });
@@ -247,13 +240,10 @@ $("#clearFavouriteFactsButton").on("click", function () {
 });
 
 function seeFavouriteFacts() {
-  let tableArea = $("#factsTableArea")
+  let tableArea = $("#factsTableArea");
   if (!savedFacts) {
-    tableArea
-      .html("")
-      .text("You have no activites saved.");
+    tableArea.html("").text("You have no activites saved.");
   } else {
-  
     tableArea.html("");
     let table = $("<table></table>");
     table.addClass("table table-bordered table-hover ");
@@ -270,9 +260,7 @@ function seeFavouriteFacts() {
 
     for (const element of savedFacts) {
       let tableRow = $("<tr></tr>").appendTo(tableBody);
-      $("<td></td>")
-        .text(element.value)
-        .appendTo(tableRow);
+      $("<td></td>").text(element.value).appendTo(tableRow);
       let completed = $("<td></td>")
         .html(
           `<button type="button" class="btn btn-outline-danger removeFactButton" id = "${element.id}">Remove</button>
@@ -363,15 +351,13 @@ function printDogPics() {
   }
 }
 
-window.addEventListener("scroll", async function(){
-  const {scrollTop, scrollHeight, clientHeight} =document.documentElement
-  if (isGettingDoggyPics === false){
-    if (clientHeight + scrollTop >= scrollHeight - 150){
-      isGettingDoggyPics = true
-      await getDogPic()
-      isGettingDoggyPics = false
+window.addEventListener("scroll", async function () {
+  const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+  if (isGettingDoggyPics === false) {
+    if (clientHeight + scrollTop >= scrollHeight - 150) {
+      isGettingDoggyPics = true;
+      await getDogPic();
+      isGettingDoggyPics = false;
+    }
   }
-  
-
-  }
-})
+});
