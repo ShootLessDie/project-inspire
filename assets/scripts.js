@@ -204,6 +204,11 @@ function deleteFavouriteActivity() {
     savedActivites.splice(index, 1);
     localStorage.setItem("favouriteActivites", JSON.stringify(savedActivites));
     seeFavouriteActivites();
+    if (savedActivites.length == 0) {
+      localStorage.removeItem("favouriteActivites");
+      savedActivites = "";
+    }
+    seeFavouriteActivites();
   });
 }
 
@@ -211,7 +216,6 @@ printChuckFact();
 $("#getChuckFactButton").on("click", printChuckFact);
 
 $("#saveFactButton").on("click", function () {
-  console.log("save button pressed");
   if (!savedFacts) {
     let toSaveFacts = [];
     toSaveFacts.push(currentFact);
@@ -286,9 +290,12 @@ function deleteFavouriteFact() {
     .appendTo(parent);
   confirmButton.on("click", function () {
     let index = savedFacts.findIndex((x) => x.id == itemID);
-    console.log(index);
     savedFacts.splice(index, 1);
     localStorage.setItem("favouriteFacts", JSON.stringify(savedFacts));
+    if (savedFacts.length == 0) {
+      localStorage.removeItem("favouriteFacts");
+      savedFacts = "";
+    }
     seeFavouriteFacts();
   });
 }
