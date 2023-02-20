@@ -11,7 +11,7 @@ The deployed application can be accessed on: https://shootlessdie.github.io/proj
 And it looks like this.
 
 <p>
-    <img alt= "Screenshot of web application" src="./assets/Screenshot.jpg"/>
+    <img alt= "Screenshot of web application." src="./assets/Screenshot.jpg"/>
 </p>
 
 ## Presentation
